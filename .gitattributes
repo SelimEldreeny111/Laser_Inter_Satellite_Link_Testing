@@ -1,0 +1,15 @@
+* text=auto
+
+*.py text eol=lf
+*.ino text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.txt text eol=lf
+
+*.bin binary
+*.exe binary
+*.png binary
+*.pdf binary
+*.xlsx binary
+*.rar binary

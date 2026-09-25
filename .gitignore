@@ -1,0 +1,36 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Generated build trees
+build/
+tmp/
+
+# Local measurement output and operator data
+Session Reports/
+*.log
+
+# Historical packaged builds. Keep only the validated current release.
+dist/*
+!dist/LaserStageController_EgSA_6400PPR_Final.exe
+!dist/Laser_XZ_Controller_v2.5_6400PPR_F401RCT6.bin
+!dist/Laser_XZ_Controller_v2.5_6400PPR_F401RCT6.hex
+
+# Local archives and imported conversation images
+gui.rar
+/46972383-b8c9-4440-b059-91d5acd0508d.png
+/74c50ee7-09f2-4304-864d-6cf70b26d049.png
+/b88a0ced-c221-4ffc-b1a9-df9e891ff642.png
+
+# IDE and operating-system metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
