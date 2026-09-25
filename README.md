@@ -160,7 +160,9 @@ acceleration; the defaults remain 20 mm/s and 40 mm/s².
 The dual-motor test sketch must be replaced by the main controller firmware
 before the GUI can connect.
 
-1. Install **STM32 MCU based boards** by STMicroelectronics in Arduino IDE 2.
+1. Install **STM32 MCU based boards 2.12.0** by STMicroelectronics in Arduino
+   IDE 2. This release is compiled and continuously tested against that exact
+   core version; do not silently upgrade the toolchain for a production flash.
 2. Open `firmware/Laser_XZ_Controller/Laser_XZ_Controller.ino`.
 3. Select **Generic STM32F4 series**.
 4. Select **Generic F401RCTx** as the board part number.
