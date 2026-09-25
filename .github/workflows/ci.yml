@@ -1,0 +1,57 @@
+name: Project validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  desktop-tests:
+    name: GUI, GPIB, sessions, and Excel tests
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r gui/requirements.txt
+
+      - name: Run test suite
+        run: >-
+          python -m unittest
+          gui.test_protocol
+          gui.test_gpib_visa
+          gui.test_session_excel
+          gui.test_excel_beam_plotter
+          gui.test_sessions
+          -v
+
+  stm32-build:
+    name: Compile STM32F401 firmware
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install STM32 Arduino core
+        shell: pwsh
+        run: |
+          arduino-cli core update-index --additional-urls "https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json"
+          arduino-cli core install STMicroelectronics:stm32 --additional-urls "https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json"
+
+      - name: Compile production controller
+        run: arduino-cli compile --fqbn "STMicroelectronics:stm32:GenF4:pnum=GENERIC_F401RCTX" firmware/Laser_XZ_Controller
+
+      - name: Compile dual-motor commissioning test
+        run: arduino-cli compile --fqbn "STMicroelectronics:stm32:GenF4:pnum=GENERIC_F401RCTX" firmware/Dual_Motor_Test
+
+      - name: Compile single-motor commissioning test
+        run: arduino-cli compile --fqbn "STMicroelectronics:stm32:GenF4:pnum=GENERIC_F401RCTX" firmware/Single_Motor_Test
