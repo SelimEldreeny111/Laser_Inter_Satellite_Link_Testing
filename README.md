@@ -41,8 +41,6 @@ by exact STEP-pulse increments in micrometres, or enter an absolute X/Z target.
   motion, timing, resolution, state-machine and error-handling specification.
 - `output/pdf/Laser_XZ_GUI_Developer_Interface_Specification.pdf` - polished
   handoff copy of the third-party interface specification.
-- `docs/GUI_DEVELOPER_INTERFACE_SPEC.md` - complete third-party GUI integration,
-  movement, speed, acceleration, resolution and error-handling specification.
 - `docs/SESSIONS.md` - automated-session operation, timing, UART sequence,
   safety checks and future-recipe extension guide.
 - `docs/E5574A_VISA_GUIDE.md` - host-PC VISA/GPIB setup and E5574A commands.
@@ -328,9 +326,9 @@ Rebuild the standalone GUI:
 $assetPath = (Resolve-Path gui\assets).Path
 $iconPath = (Resolve-Path gui\assets\egsa_icon.png).Path
 py -m PyInstaller --noconfirm --clean --onefile --windowed `
-  --name LaserStageController_EgSA_HighResolution_6um --paths gui `
+  --name LaserStageController_EgSA_6400PPR_Final --paths gui `
   --add-data "$assetPath;assets" --icon "$iconPath" --distpath dist `
-  --workpath build\pyinstaller_egsa_high_resolution --specpath build gui\laser_stage_gui.py
+  --workpath build\pyinstaller_egsa_6400ppr_final --specpath build gui\laser_stage_gui.py
 ```
 
 ## Safety
